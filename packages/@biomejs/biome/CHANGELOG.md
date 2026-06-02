@@ -1,5 +1,38 @@
 # @biomejs/biome
 
+## 2.4.17
+
+### Patch Changes
+
+- [#9974](https://github.com/biomejs/biome/pull/9974) [`ff635a9`](https://github.com/biomejs/biome/commit/ff635a90da3567a9006ae947b6c5983d87dfbb9f) Thanks [@pkallos](https://github.com/pkallos)! - Added `ignoreMixedLogicalExpressions` to [useNullishCoalescing](https://biomejs.dev/linter/rules/use-nullish-coalescing/), partially addressing [#9232](https://github.com/biomejs/biome/issues/9232). When enabled, Biome ignores `||` and `||=` mixed with `&&` in the same expression tree.
+
+- [#10503](https://github.com/biomejs/biome/pull/10503) [`c656679`](https://github.com/biomejs/biome/commit/c656679d1f9e725a42e5d60fb3b9e76bb03d7f88) Thanks [@Mokto](https://github.com/Mokto)! - Added the new nursery rule `useSvelteRequireEachKey`, a Svelte lint rule that reports `{#each}` blocks with item bindings that are missing a key.
+
+- [#10487](https://github.com/biomejs/biome/pull/10487) [`0c03ee3`](https://github.com/biomejs/biome/commit/0c03ee3deee068220175c3599e6bc3c4ed8ad247) Thanks [@Mokto](https://github.com/Mokto)! - Fixed a Svelte parser error that incorrectly required a binding variable after `{:then}` and `{:catch}`. Biome now correctly accepts `{:then}` and `{:catch}` without a binding, as well as the `{#await expr then}` and `{#await expr catch}` shorthand forms.
+
+- [#10108](https://github.com/biomejs/biome/pull/10108) [`24e51d6`](https://github.com/biomejs/biome/commit/24e51d6edebaee0ffb938bc20633d9c3403110c9) Thanks [@IxxyDev](https://github.com/IxxyDev)! - Fixed [#6611](https://github.com/biomejs/biome/issues/6611): [`noUnnecessaryConditions`](https://biomejs.dev/linter/rules/no-unnecessary-conditions/) now uses type information to detect more redundant conditions, including `?.`, `??`, `||`, `&&`, comparisons against `null`/`undefined` on non-nullish operands, and `case` clauses that can never match the `switch` value.
+
+- [#10520](https://github.com/biomejs/biome/pull/10520) [`b55d10f`](https://github.com/biomejs/biome/commit/b55d10f5e8f3099b3f246911ca19cc79758d55e0) Thanks [@dyc3](https://github.com/dyc3)! - Fixed [#10519](https://github.com/biomejs/biome/issues/10519): Vue `v-on` event handlers with multiple inline statements are now parsed consistently with Vue.
+
+- [#10532](https://github.com/biomejs/biome/pull/10532) [`1da3c75`](https://github.com/biomejs/biome/commit/1da3c7573cdb1d097fc1773fee686140d95f3f35) Thanks [@denbezrukov](https://github.com/denbezrukov)! - CSS declarations with comments before `:` or after `!important` now preserve spaces before `:` and `;`.
+
+  ```diff
+   .selector {
+  -  padding/* name */: 1px;
+  -  color: red !important /* note */;
+  +  padding/* name */ : 1px;
+  +  color: red !important /* note */ ;
+   }
+  ```
+
+- [#10491](https://github.com/biomejs/biome/pull/10491) [`a1b5834`](https://github.com/biomejs/biome/commit/a1b5834d4968fd518cc4adfa0e8b4b65b2232637) Thanks [@Mokto](https://github.com/Mokto)! - Fixed the Svelte parser rejecting `{#each}` blocks where the binding uses object destructuring with property renaming, e.g. `{#each items as { id, component: Filter }}`. Biome now correctly parses and formats these rename bindings.
+
+- [#10490](https://github.com/biomejs/biome/pull/10490) [`99bc7df`](https://github.com/biomejs/biome/commit/99bc7df1d1cbb599e9713da56c29763cd04bb53c) Thanks [@Mokto](https://github.com/Mokto)! - Fixed the CSS parser rejecting comma-separated selector lists inside `:global()` and `:local()` pseudo-class functions. Biome now correctly parses `:global(.foo, .bar)`.
+
+- [#10530](https://github.com/biomejs/biome/pull/10530) [`e8e1e6a`](https://github.com/biomejs/biome/commit/e8e1e6aa1b39d1e19d33c12d4b56d6d3fd01a7ce) Thanks [@Conaclos](https://github.com/Conaclos)! - Fixed [#10493](https://github.com/biomejs/biome/issues/10493): [`useImportType`](https://biomejs.dev/linter/rules/use-import-type/) now correctly separates types from a default named import when all imports are types and the `style` option is set to `separatedType`.
+
+- [#10539](https://github.com/biomejs/biome/pull/10539) [`935c59a`](https://github.com/biomejs/biome/commit/935c59a6657022c37c9b9933c66cc29c236e5aff) Thanks [@dyc3](https://github.com/dyc3)! - Improved how diagnostics print long lines of code, for example minified files where the entire source code is printed in one line.
+
 ## 2.4.16
 
 ### Patch Changes
